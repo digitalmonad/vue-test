@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  php:
+    image: harbor.whalebone.io/library/device-storage-api:latest
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+    ports:
+      - 127.0.0.1:8081:80
+    environment:
+      PHP_EXTENSION_MYSQLI: 1
+
+  mariadb:
+    image: harbor.whalebone.io/library/device-storage-api-db:latest
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile-db
+    ports:
+      - 127.0.0.1:3306:3306
+
+  adminer:
+    image: dockette/adminer:dg
+    ports:
+      - 127.0.0.1:8080:80

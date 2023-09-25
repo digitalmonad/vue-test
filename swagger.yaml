@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+  title: Device Storage API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8081/
+
+security:
+  - APIKey: [ ]
+
+paths:
+  /save:
+    post:
+      summary: Store device information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceInfo'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "success"
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Error message
+                example: 'Missing value: owner_name'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Error message
+                example: 'Bad token.'
+
+  /list:
+    get:
+      summary: List devices
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Error message
+                example: 'Bad token.'
+
+components:
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      name: Authorization
+      in: header
+
+  schemas:
+    DeviceListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/DeviceInfo'
+
+    DeviceInfo:
+      type: object
+      required: [ hostname, device_type, os_type, owner_name ]
+      properties:
+        hostname:
+          type: string
+        device_type:
+          $ref: '#/components/schemas/DeviceType'
+        os_type:
+          $ref: '#/components/schemas/OsType'
+        owner_name:
+          type: string
+
+    OsType:
+      type: string
+      enum: [ win, lin, macOS, iOS, android ]
+
+    DeviceType:
+      type: string
+      enum: [ pc, laptop, mobile ]

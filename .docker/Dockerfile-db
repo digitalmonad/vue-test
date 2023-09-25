@@ -1,0 +1,8 @@
+FROM mariadb:10.4
+
+ENV MARIADB_ROOT_PASSWORD=apitte
+ENV MARIADB_PASSWORD=apitte
+ENV MARIADB_USER=apitte
+ENV MARIADB_DATABASE=apitte
+
+ADD ./dump.sql /docker-entrypoint-initdb.d/init-db.sql

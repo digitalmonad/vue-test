@@ -1,0 +1,22 @@
+parameters:
+	apiToken: 'devices-storage'
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+di:
+	export:
+		parameters: no
+		tags: no
+
+database:
+	dsn: 'mysql:host=mariadb;dbname=%database.dbname%'
+	user: %database.user%
+	password: %database.password%
