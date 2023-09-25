@@ -8,14 +8,14 @@ Install with docker compose
 2. Run docker-compose up
 
 
-curl:
-
+curl: add 2 devices, list result
+```sh
 curl http://localhost:8081/save -v -H "Authorization: devices-storage" -d '{"hostname":"test-hostname","device_type":"pc","os_type":"lin","owner_name":"test-user"}'
 
 curl http://localhost:8081/save -v -H "Authorization: devices-storage" -d '{"hostname":"test-hostname2","device_type":"laptop","os_type":"win","owner_name":"user2"}'
 
 curl http://localhost:8081/list -v -H "Authorization: devices-storage"
-
+```
 
 End points
 =================
