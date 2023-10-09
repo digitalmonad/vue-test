@@ -62,14 +62,14 @@ class DevicesPresenter extends Nette\Application\UI\Presenter
 		$device = Device::tryFrom($data['device_type']);
 		if (! $device) {
 			$this->getHttpResponse()->setCode(Nette\Http\IResponse::S400_BAD_REQUEST);
-			$this->sendResponse(new JsonResponse('Invalid device_type: ' . $_value));
+			$this->sendResponse(new JsonResponse('Invalid device_type: ' . $data['device_type']));
 		}
 
 
 		$os = OperationSystem::tryFrom($data['os_type']);
 		if (! $os) {
 			$this->getHttpResponse()->setCode(Nette\Http\IResponse::S400_BAD_REQUEST);
-			$this->sendResponse(new JsonResponse('Invalid os_type: ' . $_value));
+			$this->sendResponse(new JsonResponse('Invalid os_type: ' . $data['os_type']));
 		}
 
 		if (
