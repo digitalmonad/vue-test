@@ -34,6 +34,7 @@ import {
 import { createDevice } from '@/api/deviceStorageApi';
 import { DeviceSchema } from '@/lib/types/deviceStorage';
 import { ref, defineEmits } from 'vue';
+import { PlusIcon } from '@radix-icons/vue';
 
 const formSchema = toTypedSchema(DeviceSchema);
 
@@ -67,7 +68,9 @@ const emit = defineEmits(['device-created']);
 <template>
   <Sheet :open="isOpen" @update:open="(open) => (isOpen = open)">
     <SheetTrigger as-child>
-      <Button variant="outline" @click="isOpen = true"> Add new </Button>
+      <Button variant="outline" @click="isOpen = true">
+        <PlusIcon class="mr-2" /> Add new
+      </Button>
     </SheetTrigger>
     <SheetContent>
       <SheetHeader>
@@ -157,7 +160,7 @@ const emit = defineEmits(['device-created']);
       </div>
       <SheetFooter>
         <Button :disabled="isSubmitting" type="submit" @click="onSubmit">
-          Create new device
+          Add new device
         </Button>
       </SheetFooter>
     </SheetContent>
