@@ -1,14 +1,12 @@
-Devices storage API
-===================
+# Devices storage API
 
+## Install with docker compose
 
-Install with docker compose
-------------
 1. Run docker-compose pull
 2. Run docker-compose up
 
-
 curl: add 2 devices, list result
+
 ```sh
 curl http://localhost:8081/save -v -H "Authorization: devices-storage" -d '{"hostname":"test-hostname","device_type":"pc","os_type":"lin","owner_name":"test-user"}'
 
@@ -17,12 +15,12 @@ curl http://localhost:8081/save -v -H "Authorization: devices-storage" -d '{"hos
 curl http://localhost:8081/list -v -H "Authorization: devices-storage"
 ```
 
-End points
-=================
+# End points
 
-Listing all devices
-------------
+## Listing all devices
+
 `http://localhost:8081/list`
+
 ```
 METHOD: GET
 
@@ -31,9 +29,8 @@ Content-Type:application/json
 Authorization:
 ```
 
+## Adding new device
 
-Adding new device
-------------
 `http://localhost:8081/save`
 
 ```
@@ -51,3 +48,13 @@ Authorization:
 
 }
 ```
+
+# How to run frontend
+
+1. Go to `/frontend` directory
+
+2. create new `.env` in the root project directory and populate VITE variables as described in `.env.example`
+
+3. run `pnpm install` or similar command in other NodeJS package manager
+
+4. run `pnpm run dev` or similar command in other NodeJS package manager
